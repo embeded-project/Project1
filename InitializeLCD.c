@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "C:/Keil/EE319Kware/inc/tm4c123gh6pm.h.h"
 #include <math.h>
-#include <stdbool.h>
+#include <stdbool.h>https://github.com/embeded-project/Project1/blob/main/secondlcd.c
 #define LCD_RS  (*((volatile unsigned long *)0x40004200))
 #define LCD_EN  (*((volatile unsigned long *)0x40004100))
 #define LCD_RW  (*((volatile unsigned long *)0x40004080))
