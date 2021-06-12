@@ -1,0 +1,5 @@
+//recieve function
+char UART_InputChar(void){
+while((UART7_FR_R & 0x10) != 0); 				// wait if the receive FIFO is empty
+return (char)(UART7_DR_R & 0xFF); 			//return the first 8 bits 
+}
