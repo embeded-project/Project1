@@ -1,0 +1,36 @@
+float calculate(float old_latitude,float old_longitude,float new_latitude,float new_longitude){
+
+	float dy = (new_latitude-old_latitude)* PI/180.0;
+	float dx = (new_longitude-old_longitude)* PI/180.0;
+	
+
+	old_latitude = (old_latitude)* PI/180.0;
+	new_latitude = (new_latitude)* PI/180.0;
+	
+
+	float a = pow(sin(dy / 2), 2) + pow(sin(dx / 2), 2) * cos(old_latitude) * cos(new_latitude);
+	float r = 6371, dist = 2 * asin(sqrt(a));
+	return r * dist * 1000;
+}
+
+float total (float old_latitude, float old_longitude, float new_latitude, float new_longitude)
+{ 
+	float Total=0;
+	if(old_longitude!=0 && old_latitude !=0){ 
+		Total = calculate(old_latitude,old_longitude,new_latitude,new_longitude);
+	}
+	return Total;
+}
+
+void delay(int north)
+{
+	int i;
+	int j;
+	for(i=0 ; i<north ; i++)
+	{
+		for(j=0; j<3180; j++)
+		{
+			
+		}
+	}
+}
