@@ -1,0 +1,23 @@
+#include "tm4c123gh6pm.h"
+#include "Lcd.h"
+
+int main(void)
+{
+
+
+while (1)
+	{
+			parsing(data_arr);
+	  	total+= calculate(lat_old, lon_old , data_arr[0], data_arr[1]);
+			lat_old=data_arr[0];
+			lon_old=data_arr[1];
+			cursor(1,1);
+			data_string("Total distance =");
+			cursor(1,2);
+			sprintf(buff,"%dist",(unsigned short int)total);
+		  data_string(buff);
+			hundredm(total);
+			delay(1000);
+	}
+		
+}
