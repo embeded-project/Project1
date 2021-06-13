@@ -1,7 +1,0 @@
-void Get_gpsdata(char * Command, uint8_t len){
-	char c ;
-	int i;
-    for (i=0; i< len; i++){
-	  c=UART_InputChar(); 
-	     Command[i]=c; //save every character into the array
-       }

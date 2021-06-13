@@ -1,0 +1,22 @@
+#include "Initializations.h"
+#include "tm4c123gh6pm.h"
+#include "Lcd.h"
+void command(unsigned char cmd)            
+{
+	GPIO_PORTB_DATA_R=cmd;
+	GPIO_PORTE_DATA_R=(0<<1)|(0<<2)|(1<<3);
+	delay(1);
+	GPIO_PORTE_DATA_R=(0<<1)|(0<<2)|(0<<3);
+	delay(50);
+	return;
+}
+
+void data(unsigned char data)
+{
+	GPIO_PORTB_DATA_R=data;
+	GPIO_PORTE_DATA_R=(1<<1)|(0<<2)|(1<<3);
+	delay(1);
+	GPIO_PORTE_DATA_R=(1<<1)|(0<<2)|(0<<3);
+	delay(50);
+	return;
+}
