@@ -1,0 +1,18 @@
+void data_string(unsigned char *str)         
+{
+	int		i=0;
+	while(str[i]!='\0')
+	{
+		data(str[i]);
+		i++;
+	}
+	delay(100);
+	return;
+}
+
+void cursor(unsigned char x,unsigned char y)       
+{
+	unsigned char firstcharadr[]={0x80,0xC0};
+	command(firstcharadr[y-1] + x - 1);
+	delay(50);
+}
