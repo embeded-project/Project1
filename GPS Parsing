@@ -1,0 +1,85 @@
+#include "Initializations.h"
+#include "tm4c123gh6pm.h"
+#include <Math.h>
+#define PI 3.14159265359
+#include <string.h>
+#include <stdlib.h>
+#include "LCD.h"
+
+
+
+
+
+
+void parsing(float data_arr[])
+{
+	unsigned char uartdata;
+	unsigned char flag=0;
+	unsigned char* lat;
+	unsigned char* lon;
+	unsigned char* north;
+	unsigned char* east;
+	unsigned char* gps_fix;
+	float latf;
+	float lonf;
+	unsigned char lati;
+	unsigned char loni;
+	float latr;
+	float lonr;
+	unsigned char arr[50];
+		while(flag==0){
+			    uartdata = UART5_in();
+				if(uartdata =='$'){
+					uartdata = UART5_in();
+				if(uartdata=='G'){
+					uartdata = UART5_in();
+				if(uartdata=='P'){
+					uartdata = UART5_in();
+	 		  if(uartdata=='G'){
+					uartdata = UART5_in();
+				if(uartdata=='G'){
+					uartdata = UART5_in();
+				if(uartdata=='A'){
+					uartdata = UART5_in();
+				if(uartdata==','){
+					for(int i=0;i<50;i++){
+				  	arr[i]= UART5_in();
+					}
+				}
+				}
+				}
+	  		}
+				}
+				}
+				}
+			lat = strtok(arr, ",");
+			lat = strtok(NULL, ",");
+			north = strtok(NULL, ",");
+			lon = strtok(NULL, ",");
+			east = strtok(NULL, ",");
+		  gps_fix = strtok(NULL, ",");
+			if(gps_fix[0]=='1'){ 
+				flag=1;
+			}
+		}
+		latf= strtod(lat,NULL);
+		lonf= strtod(lon,NULL);
+		latf=latf/100;
+		lonf=lonf/100;
+		lati=(unsigned char)latf;
+		loni=(unsigned char)lonf;
+		latf=latf-lati;
+		lonf=lonf-loni;
+		latf=(latf*100)/60;
+		lonf=(lonf*100)/60;
+		latr=lati+latf;
+		lonr=loni+lonf;
+		if(north[0] == 'S'){
+			latr*=-1;
+		}
+		if(east[0]=='W'){
+			lonr*=-1;
+		}
+		data_arr[0]=latr;
+		data_arr[1]=lonr;
+}
